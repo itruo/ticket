@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.znkj.ticket.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.znkj.ticket.model.User" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="idnum" property="idnum" jdbcType="VARCHAR" />
+    <result column="idpic_front" property="idpicFront" jdbcType="VARCHAR" />
+    <result column="idpic_back" property="idpicBack" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="frozen" property="frozen" jdbcType="DECIMAL" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="corporation" property="corporation" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="bus_lisence" property="busLisence" jdbcType="VARCHAR" />
+    <result column="ischeked" property="ischeked" jdbcType="INTEGER" />
+    <result column="enable" property="enable" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getFirmInfo" resultType="java.util.List">
+    SELECT id ,username ,company ,corporation ,phone ,bus_lisence ,ischeked
+    FROM user
+    WHERE company != ""
+  </select>
+</mapper>

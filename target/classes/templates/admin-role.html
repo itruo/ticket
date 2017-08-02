@@ -1,0 +1,278 @@
+<!doctype html>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>管理员管理</title>
+  <meta name="description" content="这是一个log页面"/>
+  <meta name="keywords" content="log"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="renderer" content="webkit"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="../static/assets/i/favicon.png"/>
+  <link rel="apple-touch-icon-precomposed" href="../static/assets/i/app-icon72x72@2x.png"/>
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="../static/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="../static/assets/css/admin.css"/>
+  <link rel="stylesheet" href="../static/assets/css/amazeui.datatables.min.css" />
+  <link rel="stylesheet" href="../static/js/layer/skin/default/layer.css" />
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>文化票号</strong> <small>后台管理系统</small>
+  </div>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+      <li class="am-dropdown" data-am-dropdown="data-am-dropdown">
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle="data-am-dropdown-toggle" href="javascript:;">
+          <span class="am-icon-users"></span> <b th:text="${session.username}">管理员</b> <span class="am-icon-caret-down"></span>
+            <input type="hidden" id="admin_role_hidden" th:value="${session.role}" />
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+          <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+          <li><a href="/admin/exit"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li>
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list" id="collapase-nav-1">
+        <li><a href="/admin/index"><span class="am-icon-home"></span> 首页</a></li>
+
+          <li class="admin-parent">
+              <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-user-md"></span>管理员管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+              <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                  <li><a href="/admin/adminmanger"><span class="am-icon-user-md"></span> 账号信息管理</a></li>
+                  <li><a href="/admin/role"><span class="am-icon-user-md"></span> 角色信息管理</a></li>
+                  <li><a href="/admin/opt"><span class="am-icon-dashboard"></span> 操作权限管理</a></li>
+              </ul>
+          </li>
+          <li class="admin-parent">
+              <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-users"></span>用户管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+              <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
+                  <li><a href="/usermanger/userinfo"><span class="am-icon-user"></span> 账号信息管理</a></li>
+                  <li><a href="/usermanger/detailinfo"><span class="am-icon-user"></span> 详细信息管理</a></li>
+                  <li><a href="/usermanger/firminfo"><span class="am-icon-empire"></span> 公司信息管理</a></li>
+              </ul>
+          </li>
+          <li class="admin-parent">
+              <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><span class="am-icon-windows"></span> 系统管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+              <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
+                  <li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
+                  <li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
+                  <li><a href="admin-404.html"><span class="am-icon-bug"></span> 404</a></li>
+              </ul>
+          </li>
+          <li><a href="admin-user.html"><span class="am-icon-check"></span>  个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
+          <li><a href="/admin/exit"><span class="am-icon-sign-out"></span> 注销</a></li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+        </div>
+      </div>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-tag"></span> wiki</p>
+          <p>Welcome to Cultural Exchange Shop!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl"><strong class="am-text-primary am-text-lg">管理员管理</strong> / <small>角色信息管理</small></div>
+      </div>
+
+      <hr/>
+
+      <div class="am-g error-log">
+        <div class="am-u-sm-12 am-u-sm-centered">
+        	<table class="am-table am-table-striped am-table-bordered am-table-compact" id="example">
+                <thead style="font-size: small">
+                <tr>
+                    <th>ID</th>
+                    <th>角色名称</th>
+                    <th>角色权限</th>
+                    <th>添加时间</th>
+                    <th>更新时间</th>
+                    <th>添加人</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody style="font-size: 12px">
+                    <tr class="odd gradeX" th:each="role:${roles}">
+                        <td th:text="${role.id}">1</td>
+    					<td th:text="${role.name}">用户管理人员</td>
+    					<td th:text="${role.permissions}">修改用户信息，删除用户</td>
+    					<td th:text="${#dates.format(role.addtime, 'yyyy-MM-dd HH:mm')}">2017-7-26 15:42</td>
+    					<td th:text="${#dates.format(role.updatetime, 'yyyy-MM-dd HH:mm')}">2017-7-26 15:42</td>
+                        <td th:text="${role.adder}">skyRuo</td>
+    					<td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button th:id="${role.id}" th:name="${role.name}" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="attrRoleValue(this)" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 550, height: 300}"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                    <button th:name="${role.id}" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del_role"><span class="am-icon-trash-o"></span> 删除</button>
+                                </div>
+                            </div>
+    					</td>
+
+  					</tr>
+                </tbody>
+            </table>
+          <p><button type="button" id="add_btn" class="am-btn am-btn-primary" data-am-modal="{target: '#doc-modal-add', closeViaDimmer: 0, width: 450, height: 250}">
+              添加管理角色
+          </button></p>
+        </div>
+      </div>
+    </div>
+      <!-- modal of role update-->
+      <div class="am-modal am-modal-no-btn" id="doc-modal-1" style="display: none;">
+          <div class="am-modal-dialog">
+              <div class="am-modal-hd" ><h3 class="am-form-label">角色权限修改</h3>
+                  <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="data-am-modal-close">&times;</a>
+              </div>
+              <div class="am-modal-bd">
+                  <form class="am-form am-form-horizontal">
+                      <div class="am-form-group">
+                          <label for="roleid" class="am-u-sm-3 am-form-label">ID </label>
+                          <div class="am-u-sm-9">
+                              <input type="text" id="roleid" name="roleid"  readonly="readonly" />
+                          </div>
+                      </div>
+                      <div class="am-form-group">
+                          <label for="uprolenname" class="am-u-sm-3 am-form-label">角色名称</label>
+                          <div class="am-u-sm-9">
+                              <input type="text" id="uprolenname" name="uprolenname" readonly="readonly" />
+                          </div>
+                      </div>
+
+                      <div class="am-form-group">
+                          <label for="optup" class="am-u-sm-3 am-form-label">权限设置</label>
+                          <div class="am-u-sm-9">
+                              <select id="optup" name="optup"  multiple="multiple"  data-am-selected="{maxHeight:150,dropUp: 1,btnWidth: '100%', btnSize: 'sm'}">
+                                  <option th:each="opt:${opts}" th:value="${opt.id}" th:text="${opt.name}">修改用户信息，</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="am-form-group">
+                          <div class="am-u-sm-9 am-u-sm-push-3">
+                              <button type="button" id="uprole_btn" class="am-btn am-btn-primary">保存修改</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div><!--modal of update role-->
+
+      <!--modal of add role-->
+      <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-add">
+          <div class="am-modal-dialog">
+              <div class="am-modal-hd"><h3 class="am-form-label">添加管理角色</h3>
+                  <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="data-am-modal-close">&times;</a>
+              </div>
+              <div class="am-modal-bd">
+                  <form class="am-form am-form-horizontal" data-am-validator="data-am-validator">
+
+                      <div class="am-form-group">
+                          <label for="addrolename" class="am-u-sm-3 am-form-label">角色名称</label>
+                          <div class="am-u-sm-9">
+                              <input type="text" id="addrolename" name="addrolename" placeholder="请输入角色名称" />
+                          </div>
+                      </div>
+                      <div class="am-form-group">
+                          <label for="addoptforrole" class="am-u-sm-3 am-form-label">具有权限</label>
+                          <div class="am-u-sm-9">
+                          <select id="addoptforrole" name="addoptforrole" multiple="multiple"  data-am-selected="{maxHeight:150,dropUp: 1,btnWidth: '100%', btnSize: 'sm'}">
+                              <option th:each="opt:${opts}" th:value="${opt.id}" th:text="${opt.name}">修改用户信息，</option>
+                          </select>
+                          </div>
+                      </div>
+
+                      <div class="am-form-group">
+                          <div class="am-u-sm-9 am-u-sm-push-3">
+                              <button type="button" id="add_role_btn" class="am-btn am-btn-primary">添加</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div><!-- modal of add role-->
+      <!-- footer -->
+    <footer class="admin-content-footer">
+      <hr/>
+      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<footer>
+  <hr/>
+  <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="../static/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../static/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script th:src="@{/assets/js//jquery-3.2.1.min.js}" src="../static/assets/js/jquery-3.2.1.min.js"></script>
+<script th:src="@{/assets/js/amazeui.min.js}" src="../static/assets/js/amazeui.min.js"></script>
+<script src="../static/assets/js/app.js"></script>
+<script th:src="@{/assets/js/amazeui.datatables.min.js}" src="../static/assets/js/amazeui.datatables.min.js"></script>
+<script th:src="@{/js/layer/layer.js}" src="../static/js/layer/layer.js"></script>
+<script src="../static/js/update_role.js"></script>
+<script src="../static/js/add_role.js"></script>
+<script src="../static/js/del_role.js"></script>
+</body>
+<script>
+    //初始化tadaTable
+  $(function() {
+    $('#example').DataTable();
+  });
+  //获取id显示在模态框
+    function attrRoleValue(obj){
+        var id=obj.id;
+        var rolename=obj.name;
+        console.log(rolename);
+        document.getElementById("roleid").value=id;
+        //document.getElementById("uprolename").value=rolename;//不显示？？？未解决
+        $("#uprolenname").val(rolename);
+    }
+</script>
+</html>

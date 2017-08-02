@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.znkj.ticket.mapper.CityMapper">
+    <!--<select id="rselect" resultType="com.znkj.ticket.model.UserCity">-->
+        <!--select * from city left JOIN user1 u on u.id = city.id-->
+    <!--</select>-->
+</mapper>

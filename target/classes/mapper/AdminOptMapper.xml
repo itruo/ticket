@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.znkj.ticket.mapper.AdminOptMapper" >
+  <resultMap id="BaseResultMap" type="com.znkj.ticket.model.AdminOpt" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="adder" property="adder" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectOptId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT id
+    FROM admin_opt
+    WHERE name = #{name,jdbcType=VARCHAR}
+  </select>
+</mapper>

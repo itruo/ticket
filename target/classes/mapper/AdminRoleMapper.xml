@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.znkj.ticket.mapper.AdminRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.znkj.ticket.model.AdminRole" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="adder" property="adder" jdbcType="INTEGER" />
+    <result column="permissions" property="permissions" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <select id="selectRoleId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT id
+    FROM admin_role
+    WHERE name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <!--
+        根据ID更新
+      -->
+  <update id="updateRoleById" parameterType="com.znkj.ticket.model.AdminRole">
+    update admin_role
+    <trim prefix="set" suffixOverrides=",">
+      <if test="name!=null">name=#{name,jdbcType=VARCHAR},</if>
+      <if test="permissions!=null">permissions=#{permissions,jdbcType=VARCHAR},</if>
+      <if test="addtime!=null">addtime=#{addtime,jdbcType=DATE,jdbcType=VARCHAR},</if>
+      <if test="updatetime!=null">updatetime=#{updatetime,jdbcType=DATE,jdbcType=VARCHAR},</if>
+      <if test="adder!=null">adder=#{adder,jdbcType=INTEGER},</if>
+    </trim>
+    WHERE id=#{id,jdbcType=INTEGER}
+  </update>
+</mapper>

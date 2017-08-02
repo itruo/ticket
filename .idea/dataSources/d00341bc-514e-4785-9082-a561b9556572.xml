@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="ticket@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.3">
+    <root id="1"/>
+    <schema id="2" parent="1" name="ticket">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="dbgirl"/>
+    <schema id="4" parent="1" name="dbmaven"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="test"/>
+    <table id="9" parent="2" name="admin">
+      <Comment>后台管理员表</Comment>
+    </table>
+    <table id="10" parent="2" name="admin_opt">
+      <Comment>后台管理员角色</Comment>
+    </table>
+    <table id="11" parent="2" name="admin_role">
+      <Comment>后台管理员角色</Comment>
+    </table>
+    <table id="12" parent="2" name="hall_seats">
+      <Comment>剧场演播厅</Comment>
+    </table>
+    <table id="13" parent="2" name="movie_seats">
+      <Comment>影票座位号</Comment>
+    </table>
+    <table id="14" parent="2" name="movie_times">
+      <Comment>影片场次</Comment>
+    </table>
+    <table id="15" parent="2" name="movies">
+      <Comment>影片管理</Comment>
+    </table>
+    <table id="16" parent="2" name="movies_template">
+      <Comment>影片模板管理</Comment>
+    </table>
+    <table id="17" parent="2" name="theatre">
+      <Comment>剧场表</Comment>
+    </table>
+    <table id="18" parent="2" name="theatre_hall">
+      <Comment>剧场演播厅</Comment>
+    </table>
+    <table id="19" parent="2" name="user">
+      <Comment>用户表</Comment>
+    </table>
+    <column id="20" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="9" name="username">
+      <Position>2</Position>
+      <Comment>用户名，使用电话号码注册</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="9" name="password">
+      <Position>3</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="9" name="role">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="24" parent="9" name="addtime">
+      <Position>5</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="9" name="updatetime">
+      <Position>6</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="9" name="enable">
+      <Position>7</Position>
+      <Comment>是否可用，1：可用，0：冻结</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="27" parent="9" name="adder">
+      <Position>8</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="28" parent="9" name="username">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="29" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="30" parent="9" name="username">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>username</UnderlyingIndexName>
+    </key>
+    <column id="31" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="32" parent="10" name="name">
+      <Position>2</Position>
+      <Comment>操作名称</Comment>
+      <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="10" name="addtime">
+      <Position>3</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="10" name="updatetime">
+      <Position>4</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="10" name="adder">
+      <Position>5</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="36" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="37" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="38" parent="11" name="name">
+      <Position>2</Position>
+      <Comment>角色名称</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="11" name="permissions">
+      <Position>3</Position>
+      <Comment>角色权限，json字符串</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="40" parent="11" name="addtime">
+      <Position>4</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="11" name="updatetime">
+      <Position>5</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="11" name="adder">
+      <Position>6</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="43" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="12" name="name">
+      <Position>2</Position>
+      <Comment>厅名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="12" name="type">
+      <Position>3</Position>
+      <Comment>厅类型，B:大，M:中，S:小（使用枚举类）</Comment>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="12" name="layer_num">
+      <Position>4</Position>
+      <Comment>大厅座位楼层数</Comment>
+      <DataType>int(2)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="48" parent="12" name="seats_num">
+      <Position>5</Position>
+      <Comment>大厅总座位数</Comment>
+      <DataType>int(6)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="49" parent="12" name="enable">
+      <Position>6</Position>
+      <Comment>是否可用，1：可用，0：冻结</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="50" parent="12" name="seats_map">
+      <Position>7</Position>
+      <Comment>排位信息映射，json字符串存储</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="51" parent="12" name="addtime">
+      <Position>8</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="12" name="updatetime">
+      <Position>9</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="12" name="del">
+      <Position>10</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="54" parent="12" name="adder">
+      <Position>11</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="55" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="56" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="13" name="temp_id">
+      <Position>2</Position>
+      <Comment>影片模板ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="13" name="theatre_id">
+      <Position>3</Position>
+      <Comment>剧场ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="13" name="hall_id">
+      <Position>4</Position>
+      <Comment>演播厅ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="13" name="rows">
+      <Position>5</Position>
+      <Comment>排号</Comment>
+      <DataType>int(10)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="61" parent="13" name="cols">
+      <Position>6</Position>
+      <Comment>座号</Comment>
+      <DataType>int(10)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="62" parent="13" name="price">
+      <Position>7</Position>
+      <Comment>票价</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="13" name="addtime">
+      <Position>8</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="13" name="updatetime">
+      <Position>9</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="13" name="del">
+      <Position>10</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="66" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="67" parent="14" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="14" name="movie_id">
+      <Position>2</Position>
+      <Comment>影片ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="14" name="temp_id">
+      <Position>3</Position>
+      <Comment>影片模板ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="14" name="theatre_id">
+      <Position>4</Position>
+      <Comment>剧场ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="14" name="hall_id">
+      <Position>5</Position>
+      <Comment>演播厅ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="14" name="starttime">
+      <Position>6</Position>
+      <Comment>上映时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="73" parent="14" name="duration">
+      <Position>7</Position>
+      <Comment>演出时长（单位分钟），默认120分钟</Comment>
+      <DataType>int(4)|0</DataType>
+      <DefaultExpression>&apos;120&apos;</DefaultExpression>
+    </column>
+    <column id="74" parent="14" name="addtime">
+      <Position>8</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="14" name="updatetime">
+      <Position>9</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="14" name="del">
+      <Position>10</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="77" parent="14" name="adder">
+      <Position>11</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="78" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="79" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="15" name="temp_id">
+      <Position>2</Position>
+      <Comment>影片模板ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="15" name="theatre_id">
+      <Position>3</Position>
+      <Comment>剧场ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="82" parent="15" name="starttime">
+      <Position>4</Position>
+      <Comment>上映周期开始时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="15" name="endtime">
+      <Position>5</Position>
+      <Comment>上映周期结束时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="15" name="hall_id">
+      <Position>6</Position>
+      <Comment>演播厅ID</Comment>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="15" name="max_price">
+      <Position>7</Position>
+      <Comment>最高票价</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+    </column>
+    <column id="86" parent="15" name="min_price">
+      <Position>8</Position>
+      <Comment>最低票价</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+    </column>
+    <column id="87" parent="15" name="addtime">
+      <Position>9</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="15" name="updatetime">
+      <Position>10</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="89" parent="15" name="del">
+      <Position>11</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="90" parent="15" name="adder">
+      <Position>12</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="91" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="92" parent="16" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="93" parent="16" name="name">
+      <Position>2</Position>
+      <Comment>剧名</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="94" parent="16" name="type">
+      <Position>3</Position>
+      <Comment>类型ID</Comment>
+      <DataType>int(6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="95" parent="16" name="performers">
+      <Position>4</Position>
+      <Comment>演出人员</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="96" parent="16" name="duration">
+      <Position>5</Position>
+      <Comment>演出时长（单位分钟），默认120分钟</Comment>
+      <DataType>int(4)|0</DataType>
+      <DefaultExpression>&apos;120&apos;</DefaultExpression>
+    </column>
+    <column id="97" parent="16" name="summary">
+      <Position>6</Position>
+      <Comment>演出介绍</Comment>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="98" parent="16" name="cover">
+      <Position>7</Position>
+      <Comment>封面</Comment>
+      <DataType>char(255)|0</DataType>
+    </column>
+    <column id="99" parent="16" name="addtime">
+      <Position>8</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="100" parent="16" name="updatetime">
+      <Position>9</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="101" parent="16" name="del">
+      <Position>10</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="102" parent="16" name="adder">
+      <Position>11</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="103" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="104" parent="17" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="105" parent="17" name="name">
+      <Position>2</Position>
+      <Comment>剧场名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="106" parent="17" name="phone">
+      <Position>3</Position>
+      <Comment>剧场联系电话</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="107" parent="17" name="province">
+      <Position>4</Position>
+      <Comment>省份</Comment>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="108" parent="17" name="city">
+      <Position>5</Position>
+      <Comment>城市</Comment>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="109" parent="17" name="address">
+      <Position>6</Position>
+      <Comment>详细地址</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="110" parent="17" name="company">
+      <Position>7</Position>
+      <Comment>剧场介绍</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="111" parent="17" name="pic">
+      <Position>8</Position>
+      <Comment>场馆图片，多张图片使用json存储</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="112" parent="17" name="ischeked">
+      <Position>9</Position>
+      <Comment>是否审核</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="113" parent="17" name="enable">
+      <Position>10</Position>
+      <Comment>是否可用，1：可用，0：冻结</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="114" parent="17" name="addtime">
+      <Position>11</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="115" parent="17" name="updatetime">
+      <Position>12</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="116" parent="17" name="del">
+      <Position>13</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="117" parent="17" name="adder">
+      <Position>14</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="118" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="119" parent="18" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="18" name="name">
+      <Position>2</Position>
+      <Comment>厅名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="121" parent="18" name="type">
+      <Position>3</Position>
+      <Comment>厅类型，B:大，M:中，S:小</Comment>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="122" parent="18" name="layer_num">
+      <Position>4</Position>
+      <Comment>大厅座位楼层数</Comment>
+      <DataType>int(2)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="123" parent="18" name="seats">
+      <Position>5</Position>
+      <Comment>大厅座位数</Comment>
+      <DataType>int(6)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="124" parent="18" name="enable">
+      <Position>6</Position>
+      <Comment>是否可用，1：可用，0：冻结</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="125" parent="18" name="addtime">
+      <Position>7</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="126" parent="18" name="updatetime">
+      <Position>8</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="127" parent="18" name="del">
+      <Position>9</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="128" parent="18" name="adder">
+      <Position>10</Position>
+      <Comment>添加人</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="129" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="130" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>char(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="131" parent="19" name="type">
+      <Position>2</Position>
+      <Comment>用户类别，B:B端用户，C:C端用户</Comment>
+      <DataType>char(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;B&apos;</DefaultExpression>
+    </column>
+    <column id="132" parent="19" name="username">
+      <Position>3</Position>
+      <Comment>用户名,使用手机号码注册</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="133" parent="19" name="password">
+      <Position>4</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="134" parent="19" name="name">
+      <Position>5</Position>
+      <Comment>姓名</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="135" parent="19" name="sex">
+      <Position>6</Position>
+      <Comment>性别，男：M，女：F</Comment>
+      <DataType>char(1)|0</DataType>
+      <DefaultExpression>&apos;M&apos;</DefaultExpression>
+    </column>
+    <column id="136" parent="19" name="idnum">
+      <Position>7</Position>
+      <Comment>身份证号码</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="137" parent="19" name="idpic_front">
+      <Position>8</Position>
+      <Comment>身份正面图片</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="138" parent="19" name="idpic_back">
+      <Position>9</Position>
+      <Comment>身份背面图片</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="139" parent="19" name="province">
+      <Position>10</Position>
+      <Comment>省份</Comment>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="140" parent="19" name="city">
+      <Position>11</Position>
+      <Comment>城市</Comment>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="141" parent="19" name="address">
+      <Position>12</Position>
+      <Comment>详细地址</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="142" parent="19" name="balance">
+      <Position>13</Position>
+      <Comment>余额</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+    </column>
+    <column id="143" parent="19" name="frozen">
+      <Position>14</Position>
+      <Comment>冻结金额</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+    </column>
+    <column id="144" parent="19" name="company">
+      <Position>15</Position>
+      <Comment>公司名称</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="145" parent="19" name="corporation">
+      <Position>16</Position>
+      <Comment>公司法人</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="146" parent="19" name="phone">
+      <Position>17</Position>
+      <Comment>公司固定电话</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="147" parent="19" name="bus_lisence">
+      <Position>18</Position>
+      <Comment>公司营业执照</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="148" parent="19" name="ischeked">
+      <Position>19</Position>
+      <Comment>是否审核</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="149" parent="19" name="enable">
+      <Position>20</Position>
+      <Comment>是否可用，1：可用，0：冻结</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="150" parent="19" name="addtime">
+      <Position>21</Position>
+      <Comment>添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="151" parent="19" name="updatetime">
+      <Position>22</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="152" parent="19" name="del">
+      <Position>23</Position>
+      <Comment>是否删除</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="153" parent="19" name="username">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="154" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="155" parent="19" name="username">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>username</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
